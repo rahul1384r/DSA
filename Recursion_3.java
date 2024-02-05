@@ -61,19 +61,3 @@
 
 
 // leetcode 17
-import java.util.ArrayList;
-import java.util.List;
-
-public class Recursion_3 {
-    
-    public static void main(String[] args) {
-        String arr[]={"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        String digit="23";
-        for(int i=0;i<digit.length();i++){
-            String a=digit[i];
-            for(int j=digit[i];j<arr.length;j++){
-
-            }
-        }   
-    }
-}

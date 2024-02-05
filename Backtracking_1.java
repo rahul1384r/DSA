@@ -14,8 +14,8 @@ public class Backtracking_1 {
         }
     }
     public static void main(String[] args) {
-        int tq=2;
-        int board[]=new int[4];
-        print(board,tq,1,"");
+            int tq=2;
+            int board[]=new int[4];
+            print(board,tq,1,"");
     }
 }

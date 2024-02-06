@@ -1,14 +1,14 @@
 public class Backtracking_1 {
 
-    public static void print(int board[],int tq,int qp,String string){
+    public static void print(int board[],int tq,int qp,String string,int idx){
         if(qp>tq){
             System.out.println(string);
             return;
         }
-        for(int i=0;i<board.length;i++){
+        for(int i=idx;i<board.length;i++){
             if(board[i]==0){
                 board[i]=1;
-                print(board, tq, qp+1, string+"B"+i+"Q"+qp);
+                print(board, tq, qp+1, string+"B"+i+"Q"+qp,i+1);
                 board[i]=0;
             }
         }
@@ -16,6 +16,6 @@ public class Backtracking_1 {
     public static void main(String[] args) {
             int tq=2;
             int board[]=new int[4];
-            print(board,tq,1,"");
+            print(board,tq,1,"",0);
     }
 }

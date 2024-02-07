@@ -1,25 +1,47 @@
-public class Main {
+import java.util.Scanner;
 
-        public static int countTwins(String str, int idx) {
-            // Base case: if the string is empty or idx is at the end
-            if (idx >= str.length() - 2) {
-                return 0;
-            }
-    
-            // Check for a twin at the current idx
-            if (str.charAt(idx) == str.charAt(idx + 2)) {
-                return 1 + countTwins(str, idx + 1);
-            } else {
-                // If no twin at the current idx, move to the next idx
-                return countTwins(str, idx + 1);
-            }
+public class Main {
+    private static int count = 0;
+
+    private static void printBoard(int[] board, int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print("{" + (i + 1) + "-" + (board[i] + 1) + "} ");
         }
-    
-        public static void main(String[] args) {
-            // Example usage:
-            String str = "AxAxA";
-            int result = countTwins(str, 0);
-            System.out.println("Number of twins: " + result);
-        }
+        System.out.print(" ");
     }
-    
+
+    private static boolean placeQueens(int[] board, int row, int n) {
+        for (int col = 0; col < n; col++) {
+            if (isValid(board, row, col)) {
+                board[row] = col;
+                if (row == n - 1) {
+                    printBoard(board, n);
+                    count++;
+                } else {
+                    if (placeQueens(board, row + 1, n)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean isValid(int[] board, int row, int col) {
+        for (int i = 0; i < row; i++) {
+            if (board[i] == col || (i - row) == (board[i] - col) || (i - row) == (col - board[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] board = new int[n];
+        placeQueens(board, 0, n);
+        System.out.println();
+        System.out.println(count);
+    }
+}

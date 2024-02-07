@@ -1,27 +1,25 @@
-import java.util.Scanner;
+public class Main {
 
-public class Main{
-    public static void main (String args[]) {
-        Scanner sc = new Scanner(System.in);
-        int n=sc.nextInt();
-        gen(n,0);
-    }
-    public static void gen(int n,int sum){
-        if(n==0){
-            while(sum!=0){
-                n=n*10+(sum%10);
-                sum/=10;
+        public static int countTwins(String str, int idx) {
+            // Base case: if the string is empty or idx is at the end
+            if (idx >= str.length() - 2) {
+                return 0;
             }
-           System.out.println(n);
-           return; 
+    
+            // Check for a twin at the current idx
+            if (str.charAt(idx) == str.charAt(idx + 2)) {
+                return 1 + countTwins(str, idx + 1);
+            } else {
+                // If no twin at the current idx, move to the next idx
+                return countTwins(str, idx + 1);
+            }
         }
-        int a=n%10;
-        if(a==0){
-            sum=sum*10+5;
+    
+        public static void main(String[] args) {
+            // Example usage:
+            String str = "AxAxA";
+            int result = countTwins(str, 0);
+            System.out.println("Number of twins: " + result);
         }
-        else{
-            sum=sum*10+a;
-        }
-        gen(n/10,sum);
-}
-}
+    }
+    

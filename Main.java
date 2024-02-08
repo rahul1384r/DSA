@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -5,46 +6,36 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Input number of test cases
-        System.out.print("Enter the number of test cases (T): ");
-        int T = scanner.nextInt();
+        // Input string
+        System.out.print("Enter a string: ");
+        String str = scanner.nextLine();
 
-        for (int t = 0; t < T; t++) {
-            // Input size of the array
-            int N = scanner.nextInt();
-
-            // Input array elements
-            int[] arr = new int[N];
-            System.out.println("Enter the array elements for test case " + (t + 1) + ":");
-            for (int i = 0; i < N; i++) {
-                arr[i] = scanner.nextInt();
-            }
-
-            // Calculate and print the maximum number of points
-            int maxPoints = getMaxPoints(arr);
-            System.out.println("Maximum number of points for test case " + (t + 1) + ": " + maxPoints);
-        }
+        // Print lexicographically larger words
+        printLexicographicallyLargerWords(str);
     }
 
-    // Function to calculate the maximum number of points
-    private static int getMaxPoints(int[] arr) {
-        int totalSum = 0;
-        for (int num : arr) {
-            totalSum += num;
+    // Recursive function to print lexicographically larger words
+    private static void printLexicographicallyLargerWords(String str) {
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+
+        printLexicographicallyLargerWordsUtil("", new boolean[str.length()], chars, str);
+    }
+
+    private static void printLexicographicallyLargerWordsUtil(String current, boolean[] used, char[] sortedChars, String original) {
+        if (current.length() == sortedChars.length) {
+            if (current.compareTo(original) > 0) {
+                System.out.println(current);
+            }
+            return;
         }
 
-        int leftSum = 0;
-        int maxPoints = 0;
-
-        for (int i = 0; i < arr.length - 1; i++) {
-            leftSum += arr[i];
-            int rightSum = totalSum - leftSum;
-
-            if (leftSum == rightSum) {
-                maxPoints++;
+        for (int i = 0; i < sortedChars.length; i++) {
+            if (!used[i]) {
+                used[i] = true;
+                printLexicographicallyLargerWordsUtil(current + sortedChars[i], used, sortedChars, original);
+                used[i] = false;
             }
         }
-
-        return maxPoints;
     }
 }

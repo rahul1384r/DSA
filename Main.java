@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -6,55 +5,49 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Input string
-        System.out.print("Enter a string: ");
-        String str = scanner.nextLine();
+        // Input size of the array
+        System.out.print("Enter the size of the array (N): ");
+        int N = scanner.nextInt();
 
-        // Get lexicographically smaller words
-        String[] smallerWords = getLexicographicallySmallerWords(str);
-
-        // Print the result
-        System.out.println("Lexicographically smaller words:");
-        for (String word : smallerWords) {
-            System.out.println(word);
+        // Input array elements
+        int[] arr = new int[N];
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < N; i++) {
+            arr[i] = scanner.nextInt();
         }
+
+        
+        // b.) Print the groups when a successful split is found
+        System.out.println("Groups for a successful split:");
+        printEqualSumGroups(arr, 0, 0, 0, "", "");
+        // a.) Count the number of ways to split the array
+        int waysCount = countEqualSumGroups(arr, 0, 0, 0);
+        System.out.println(waysCount);
     }
 
-    // Recursive function to get lexicographically smaller words
-    private static String[] getLexicographicallySmallerWords(String str) {
-        char[] chars = str.toCharArray();
-        Arrays.sort(chars);
+    // a.) Recursive function to count the number of ways to split the array
+    private static int countEqualSumGroups(int[] arr, int index, int sum1, int sum2) {
+        if (index == arr.length) {
+            return (sum1 == sum2) ? 1 : 0;
+        }
 
-        return getLexicographicallySmallerWordsUtil("", new boolean[str.length()], chars, str);
+        int ways = 0;
+        ways += countEqualSumGroups(arr, index + 1, sum1 + arr[index], sum2);
+        ways += countEqualSumGroups(arr, index + 1, sum1, sum2 + arr[index]);
+
+        return ways;
     }
 
-    private static String[] getLexicographicallySmallerWordsUtil(String current, boolean[] used, char[] sortedChars, String original) {
-        if (current.length() == sortedChars.length) {
-            if (current.compareTo(original) < 0) {
-                return new String[]{current};
+    // b.) Recursive function to print groups for a successful split
+    private static void printEqualSumGroups(int[] arr, int index, int sum1, int sum2, String group1, String group2) {
+        if (index == arr.length) {
+            if (sum1 == sum2) {
+                System.out.println(group1 + "and " + group2);
             }
-            return new String[0];
+            return;
         }
 
-        String[] result = new String[0];
-        for (int i = 0; i < sortedChars.length; i++) {
-            if (!used[i]) {
-                used[i] = true;
-                String[] smallerWords = getLexicographicallySmallerWordsUtil(current + sortedChars[i], used, sortedChars, original);
-                used[i] = false;
-
-                result = concatenateArrays(result, smallerWords);
-            }
-        }
-
-        return result;
-    }
-
-    // Helper method to concatenate arrays
-    private static String[] concatenateArrays(String[] arr1, String[] arr2) {
-        String[] result = new String[arr1.length + arr2.length];
-        System.arraycopy(arr1, 0, result, 0, arr1.length);
-        System.arraycopy(arr2, 0, result, arr1.length, arr2.length);
-        return result;
+        printEqualSumGroups(arr, index + 1, sum1 + arr[index], sum2, group1 + arr[index] + " ", group2);
+        printEqualSumGroups(arr, index + 1, sum1, sum2 + arr[index], group1, group2 + arr[index] + " ");
     }
 }

@@ -1,37 +1,19 @@
 import java.util.Scanner;
 
 public class check {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter the size of the board (N): ");
         int N = scanner.nextInt();
-
-        System.out.print("Enter the number of faces of the dice (M): ");
-        int M = scanner.nextInt();
-
-        int result = countWaysToTravel(N, M);
-        System.out.println("Count of different ways to travel the board: " + result);
+        hanoi(N, 'A', 'B', 'C');
     }
 
-    static int countWaysToTravel(int N, int M) {
-        return helper(0, N, M);
-    }
-
-    static int helper(int position, int N, int M) {
-        if (position == N) {
-            return 1;
+    private static void hanoi(int N, char A, char B, char C) {
+        if (N == 1) {
+            System.out.println("Move 1 from " + A + " to " + B);
+            return;
         }
-        if (position > N) {
-            return 0;
-        }
-
-        int ways = 0;
-        for (int i = 1; i <= M; i++) {
-            ways += helper(position + i, N, M);
-        }
-
-        return ways;
+        hanoi(N - 1, A, C, B);
+        System.out.println("Move " + N + " from " + A + " to " + B);
+        hanoi(N - 1, C, B, A);
     }
 }

@@ -1,47 +1,59 @@
 import java.util.Scanner;
 
 public class Main {
-    private static int count = 0;
-
-    private static void printBoard(int[] board, int n) {
-        for (int i = 0; i < n; i++) {
-            System.out.print("{" + (i + 1) + "-" + (board[i] + 1) + "} ");
-        }
-        System.out.print(" ");
-    }
-
-    private static boolean placeQueens(int[] board, int row, int n) {
-        for (int col = 0; col < n; col++) {
-            if (isValid(board, row, col)) {
-                board[row] = col;
-                if (row == n - 1) {
-                    printBoard(board, n);
-                    count++;
-                } else {
-                    if (placeQueens(board, row + 1, n)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private static boolean isValid(int[] board, int row, int col) {
-        for (int i = 0; i < row; i++) {
-            if (board[i] == col || (i - row) == (board[i] - col) || (i - row) == (col - board[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] board = new int[n];
-        placeQueens(board, 0, n);
+
+        int N = scanner.nextInt();
+        int M = scanner.nextInt();
+        int[] path = new int[N];  // Use an array instead of ArrayList
+        printAllPaths(N, M, path, 0, 0);
         System.out.println();
-        System.out.println(count);
+        int result = countWaysToTravel(N, M);
+        System.out.println(result);
+    }
+
+    static int countWaysToTravel(int N, int M) {
+        return helper(0, N, M);
+    }
+
+    static int helper(int position, int N, int M) {
+        if (position == N) {
+            return 1;
+        }
+        if (position > N) {
+            return 0;
+        }
+
+        int ways = 0;
+        for (int i = 1; i <= M; i++) {
+            ways += helper(position + i, N, M);
+        }
+
+        return ways;
+    }
+
+
+    static void printAllPaths(int N, int M, int[] path, int position, int index) {
+        if (position == N) {
+            printPath(path, index);
+            return;
+        }
+        if (position > N) {
+            return;
+        }
+
+        for (int i = 1; i <= M; i++) {
+            path[index] = i;
+            printAllPaths(N, M, path, position + i, index + 1);
+        }
+    }
+
+    static void printPath(int[] path, int length) {
+        for (int i = 0; i < length; i++) {
+            System.out.print(path[i]);
+        }
+        System.out.print(" ");
     }
 }

@@ -1,14 +1,14 @@
 public class Backtracking_1 {
 
-    public static void print(int board[],int tq,int qp,String string,int idx){
+    public static void print(int board[],int tq,int qp,String ans,int idx){
         if(qp>tq){
-            System.out.println(string);
+            System.out.println(ans);
             return;
         }
         for(int i=idx;i<board.length;i++){
             if(board[i]==0){
                 board[i]=1;
-                print(board, tq, qp+1, string+"B"+i+"Q"+qp,i+1);
+                print(board, tq, qp+1, ans+"B"+i+"Q"+qp,i+1);
                 board[i]=0;
             }
         }

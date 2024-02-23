@@ -1,10 +1,10 @@
-// // 1)
+// // // 1)
 import java.util.Arrays;
 
 public class Recursion{
     public static void main(String[] args) {
         int[] arr={1,2,3,2,2};
-        int target=2;
+        int target=3;
         int indx=0;
         int count=0;
         int ans[]=find(arr, target, indx, count);
@@ -56,9 +56,9 @@ public class Recursion{
 //             System.out.println(ans);
 //             return;
 //         }
-//         if(ans.length()==0 || ans.charAt(ans.length()-1)!='H'){
-//         toss(n-1,ans+"H");
-//         toss(n-1,ans+"T");
+//         if(ans.length()==0 || ans.charAt(ans.length()-1)!='T'){
+//             toss(n-1,ans+"H");
+//             toss(n-1,ans+"T");
 //         }
 //     }
 // }

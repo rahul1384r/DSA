@@ -15,7 +15,9 @@ public class leetcode_386{
     }
     public static void main(String[] args) {
         int n=15;
-        print(n,0);
+        for(int i=1;i<9;i++){
+            print(n,i);
+        }
         
     }
 }

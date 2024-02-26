@@ -24,7 +24,7 @@ public class MergeSort {
     }
     public static void main(String[] args) {
         int arr1[]={1,2,4,7,8,9};
-        int arr2[]={3,5,6};
+        int arr2[]={2,3,5,6};
         mergeSort(arr1,arr2);
     }
 }

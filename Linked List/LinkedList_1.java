@@ -46,7 +46,10 @@ public class LinkedList_1 {
     }
 
     // function to add the element at the kth position of the linked list
-    public void addKthPosition(int val,int k){
+    public void addKthPosition(int val,int k) throws Exception{
+        if(k<0 || k>size){
+            throw new Exception("Index not found");
+        }
         Node nn=new Node();
         nn.data=val;
         
@@ -120,7 +123,7 @@ public class LinkedList_1 {
         }
         System.out.println("null");
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         LinkedList_1 ll=new LinkedList_1();
         ll.addFirst(50);
         ll.addFirst(40);
@@ -128,7 +131,7 @@ public class LinkedList_1 {
         ll.addFirst(20);
         ll.addFirst(10);
         // ll.addLast(50);
-        // ll.addKthPosition(72, 3);
+        ll.addKthPosition(72, 30);
         ll.display();
         System.out.println(ll.getFirst());
         System.out.println(ll.getLast());

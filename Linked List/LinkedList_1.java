@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class LinkedList_1 {
     // Class Node.
     class Node{
@@ -114,6 +116,53 @@ public class LinkedList_1 {
         temp2.next=null;
         size--;
     }
+
+    public void print(LinkedList ll){
+        for(int i=0;i<ll.size();i++){
+            System.out.println(ll.get(i));
+        }
+    }
+
+    public void createCycle(){
+        tail.next=head.next;
+    }
+    public void isCycle(){
+        Node fast=head;
+        Node slow=head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(slow==fast){
+                fast.next=head;
+                slow=slow.next;
+            }
+        }
+    }
+
+    public Node removeCycle(){
+        Node fast=head;
+        Node slow=head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(slow==fast){
+                break;
+            }
+        }
+        if(fast==null || fast.next==null){
+            return null;
+        }
+        fast=head;
+        while(fast!=slow){
+            fast=fast.next;
+            slow=slow.next;
+            return slow;
+        }
+        return fast;
+
+    }
     public void display(){
         System.out.print("head"+"--->");
         Node temp=head;
@@ -131,14 +180,17 @@ public class LinkedList_1 {
         ll.addFirst(20);
         ll.addFirst(10);
         // ll.addLast(50);
-        ll.addKthPosition(72, 30);
-        ll.display();
-        System.out.println(ll.getFirst());
-        System.out.println(ll.getLast());
-        System.out.println(ll.getKth(2));
-        ll.removeFirst();
-        ll.removeLast();
-        ll.removeKth(2);
-        ll.display();
+        // ll.addKthPosition(72, 30);
+        // ll.display();
+        // System.out.println(ll.getFirst());
+        // System.out.println(ll.getLast());
+        // System.out.println(ll.getKth(2));
+        // ll.removeFirst();
+        // ll.removeLast();
+        // ll.removeKth(2);
+        // ll.display();
+        // ll.createCycle();
+        // System.out.println(ll.isCycle());
+        ll.removeCycle();
     }
 }

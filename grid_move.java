@@ -7,7 +7,7 @@ public class grid_move {
     private static void print(int[][] arr, int row, int col,String ans) {
         int count=0;
         if(row==2 && col==2){
-            // System.out.println(ans);
+            System.out.println(ans);
             count++;
             return;
         }

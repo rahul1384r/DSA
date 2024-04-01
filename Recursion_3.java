@@ -33,7 +33,7 @@ import java.util.List;
 public class Recursion_3 {
     public static void main(String[] args) {
         
-        String s="aba";
+        String s="abc";
         uniquePermutation(s,"");
     }
     private static void uniquePermutation(String s,String ans){

@@ -17,7 +17,6 @@ public class leetcode_79 {
             System.out.println(false);
         }
     }
-
     private static boolean search(char[][] arr, int row, int col, int idx,String word) {
         if(idx==word.length()){
             return true;

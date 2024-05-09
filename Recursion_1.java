@@ -1,28 +1,28 @@
-// public class Recursion_1 {
-//     static int a=0;
-//     public static void main(String[] args) {
-//         int n=5;
-//         int count=0;
-//         comb(n,"");
-//         System.out.println(a);
-//     }
-//     private static void comb(int n,String ans){
-//         if(n==0){
-//             a++;
-//             System.out.println(ans);
-//             return;
-//         }
+public class Recursion_1 {
+    static int a=0;
+    public static void main(String[] args) {
+        int n=5;
+        int count=0;
+        comb(n,"");
+        System.out.println(a);
+    }
+    private static void comb(int n,String ans){
+        if(n==0){
+            a++;
+            System.out.println(ans);
+            return;
+        }
         
-//         if(n<0){
-//             return;
-//         }
-//         comb(n-1,ans+1);
-//         comb(n-2,ans+2);
-//         comb(n-3,ans+3);
-//         comb(n-4, ans+4);
+        if(n<0){
+            return;
+        }
+        comb(n-1,ans+1);
+        comb(n-2,ans+2);
+        comb(n-3,ans+3);
+        comb(n-4, ans+4);
        
-//     }
-// }
+    }
+}
 
 
 

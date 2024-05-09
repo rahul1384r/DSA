@@ -7,8 +7,8 @@ public class Recursion_2 {
     }
     private static void find(String s,String ans){
         if(s.length()==0){
-        System.out.println(ans);
-        return;
+            System.out.println(ans);
+            return;
         }
         find(s.substring(1), ans+s.charAt(0));
         find(s.substring(1), ans);

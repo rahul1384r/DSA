@@ -18,6 +18,5 @@ public class leetcode_386{
         for(int i=1;i<9;i++){
             print(n,i);
         }
-        
     }
 }

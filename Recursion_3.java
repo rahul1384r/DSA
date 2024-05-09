@@ -4,7 +4,7 @@
 // public class Recursion_3 {
 //     public static void main(String[] args) {
 //         List<String> list=new ArrayList<>();
-//         String s="aba";
+//         String s="abc";
 //         uniquePermutation(s,"",list);
 //         System.out.println(list);
 //     }
@@ -33,7 +33,7 @@ import java.util.List;
 public class Recursion_3 {
     public static void main(String[] args) {
         
-        String s="abc";
+        String s="aba";
         uniquePermutation(s,"");
     }
     private static void uniquePermutation(String s,String ans){

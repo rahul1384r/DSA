@@ -3,11 +3,11 @@ public class leetcode_79 {
         char arr[][]={{'A','B','C','E'},
                       {'S','F','C','S'},
                       {'A','D','E','E'}};
-        String word="ABCCED";
+        String str="ABCCED";
         for(int row=0;row<arr.length;row++){
-            for(int col=0;col<word.length();col++){
-                if(arr[row][col]==word.charAt(0)){
-                    boolean flag=search(arr,row,col,0,word);
+            for(int col=0;col<str.length();col++){
+                if(arr[row][col]==str.charAt(0)){
+                    boolean flag=search(arr,row,col,0,str);
                     if(flag){
                         System.out.println(true);
                         return;
@@ -17,11 +17,11 @@ public class leetcode_79 {
             System.out.println(false);
         }
     }
-    private static boolean search(char[][] arr, int row, int col, int idx,String word) {
-        if(idx==word.length()){
+    private static boolean search(char[][] arr, int row, int col, int idx,String str) {
+        if(idx==str.length()){
             return true;
         }
-        if(row<0 || col<0 || row==arr.length || col==arr[0].length || arr[row][col]!=word.charAt(idx)){
+        if(row<0 || col<0 || row==arr.length || col==arr[0].length || arr[row][col]!=str.charAt(idx)){
             return false;
         }
 
@@ -32,7 +32,7 @@ public class leetcode_79 {
         char ch=arr[row][col];
         arr[row][col]='*';
         for(int i=0;i<4;i++){
-            flag=search(arr, row+r[i], col+c[i], idx+1,word);
+            flag=search(arr, row+r[i], col+c[i], idx+1,str);
             if(flag){
                 return flag;
             }
